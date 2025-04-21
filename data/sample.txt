@@ -1,0 +1,33 @@
+Customer Service Manual: SmartHome Thermostat
+Last Updated: March 1, 2025
+
+1. Introduction
+Welcome to the SmartHome Thermostat customer service manual. This document provides guidance on installation, troubleshooting, and frequently asked questions (FAQs) to ensure a seamless user experience.
+
+2. Installation Instructions
+To install your SmartHome Thermostat:
+- Step 1: Turn off power to your HVAC system at the circuit breaker.
+- Step 2: Remove your old thermostat and label the wires (e.g., R, W, Y, G).
+- Step 3: Mount the SmartHome baseplate and connect the wires according to the provided diagram.
+- Step 4: Attach the thermostat display and turn the power back on.
+- Note: Ensure compatibility with 24V systems only. Contact support if you have a 110V system.
+
+3. Troubleshooting
+- Issue: Thermostat won’t turn on.
+  Solution: Check the circuit breaker and ensure wires are securely connected. Replace batteries if using battery backup (2x AA).
+- Issue: Temperature not adjusting.
+  Solution: Verify the thermostat is in "Heat" or "Cool" mode. Reset the device by holding the power button for 10 seconds.
+
+4. Frequently Asked Questions (FAQs)
+Q: How do I connect the thermostat to Wi-Fi?
+A: Open the SmartHome app, select "Add Device," and follow the prompts to enter your Wi-Fi credentials. Ensure a 2.4 GHz network is used.
+Q: What is the warranty period?
+A: The SmartHome Thermostat comes with a 1-year limited warranty. Contact support at support@smarthome.com for claims.
+Q: Can I use the thermostat without an app?
+A: Yes, manual controls are available on the device, but app features like scheduling require a connection.
+
+5. Contact Us
+For further assistance, reach out to our support team:
+- Email: support@smarthome.com
+- Phone: 1-800-555-1234
+- Hours: Monday–Friday, 9 AM–5 PM EST
