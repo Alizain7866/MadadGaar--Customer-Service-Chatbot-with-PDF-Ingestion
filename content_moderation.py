@@ -2,7 +2,6 @@ from azure.core.exceptions import HttpResponseError
 from azure.ai.contentsafety.models import AnalyzeTextOptions
 import os
 from dotenv import load_dotenv
-
 import logging
 
 # Configure logging
@@ -36,17 +35,20 @@ def is_safe(text, threshold=3):
     Returns True if safe, False if not.
     """
     options = AnalyzeTextOptions(text=text)
-    # result = client.analyze_text(options)
     
-    # for category in result.categories_analysis:
-    #     if category.severity > threshold:
-    #         return False  # Unsafe content
-    # return True  # Safe content
-
     try:
         # Perform content analysis
         result = client.analyze_text(options)
-        return result.is_safe
+        
+        # Check if any category's severity exceeds the threshold
+        for category in result.categories_analysis:
+            if category.severity > threshold:
+                logger.info(f"Unsafe content detected: {category.category} with severity {category.severity}")
+                return False  # Unsafe content
+        
+        logger.info("Content is safe.")
+        return True  # Safe content
+    
     except HttpResponseError as e:
         # Log the full error
         logger.error(f"Error analyzing text: {e.message}")

@@ -88,19 +88,19 @@ st.subheader("Chat with the Bot")
 user_query = st.text_input("Enter your question:")
 if user_query:
     logger.info(f"Received user query: '{user_query}'")
-    if not is_safe(user_query):
-        st.error("⚠️ Your question contains unsafe or harmful content and cannot be processed.")
-        logger.warning("Blocked unsafe query due to content safety violation.")
+    # if not is_safe(user_query):
+    #     st.error("⚠️ Your question contains unsafe or harmful content and cannot be processed.")
+    #     logger.warning("Blocked unsafe query due to content safety violation.")
+    #     st.session_state.messages.append({"role": "user", "content": user_query})
+    #     st.session_state.messages.append({"role": "bot", "content": "⚠️ I'm sorry, but I can't process that request due to safety concerns."})
+    # else:
+    with st.spinner("Generating response..."):
+        logger.info("Calling get_response function")
+        start_time = time.time()
+        response = get_response(user_query)
+        logger.info(f"Response generated in {time.time() - start_time:.2f} seconds")
         st.session_state.messages.append({"role": "user", "content": user_query})
-        st.session_state.messages.append({"role": "bot", "content": "⚠️ I'm sorry, but I can't process that request due to safety concerns."})
-    else:
-        with st.spinner("Generating response..."):
-            logger.info("Calling get_response function")
-            start_time = time.time()
-            response = get_response(user_query)
-            logger.info(f"Response generated in {time.time() - start_time:.2f} seconds")
-            st.session_state.messages.append({"role": "user", "content": user_query})
-            st.session_state.messages.append({"role": "bot", "content": response})
+        st.session_state.messages.append({"role": "bot", "content": response})
 
 # Display chat history
 for message in st.session_state.messages:

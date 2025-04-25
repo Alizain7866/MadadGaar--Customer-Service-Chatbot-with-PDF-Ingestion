@@ -66,9 +66,9 @@ def get_response(query):
     logger.info(f"Processing query: '{query}'")
     start_time = time.time()
 
-    if not is_safe(query):
-        logger.warning("Unsafe content detected in query. Aborting response generation.")
-        return "Your query appears to contain harmful content and cannot be processed."
+    # if not is_safe(query):
+    #     logger.warning("Unsafe content detected in query. Aborting response generation.")
+    #     return "Your query appears to contain harmful content and cannot be processed."
 
     # Load FAISS index and embeddings
     logger.info("Loading Ollama embeddings")
