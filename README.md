@@ -20,7 +20,6 @@ An AI-powered chatbot leveraging PDF ingestion and Retrieval-Augmented Generatio
 ## Usage
 - Upload a PDF via the Streamlit interface.
 - Ask questions based on the PDF content.
-- View responses and chat history.
 - Ask questions generally related to customer service.
   
 
