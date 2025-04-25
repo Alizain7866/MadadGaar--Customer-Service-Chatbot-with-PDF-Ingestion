@@ -1,0 +1,32 @@
+[
+    {
+      "query": "How do I reset my password?",
+      "relevant_doc_snippets": [" Please click on ”Forgot Password” on the login page and follow the instructions."],
+      "reference_answer": "You can reset your password by visiting the settings page and clicking 'Forgot Password'."
+    },
+
+    {
+        "query": "I am unable to access the premium features on my account",
+        "relevant_doc_snippets": [" After reviewing your account (Customer ID: 3928471), it appears that your subscription payment was successfully processed, but there may have been a delay in activating the premium features due to a system sync issue. ..."],
+        "reference_answer": "There has been a delay in activating the premium features due to a system sync issue."
+    },
+
+    {
+        "query": "I have been unable to log into my account",
+        "relevant_doc_snippets": ["I have checked our system and noticed that your account was temporarily locked due to multiple unsuccessful login attempts. This is a standard security measure to protect your data...."],
+        "reference_answer": "Your account has been temporarily locked due to multiple unsuccessful login attempts."
+    },
+
+    {
+        "query": "I keep getting an error message saying 'File Size Exceeded.'",
+        "relevant_doc_snippets": [" it seems the 'File Size Exceeded' error occurs because the current file size limit for your account tier is 50 MB per file. The file you attempted to upload may exceed this limit...."],
+        "reference_answer": "This occurred because the file you are uploading exceeds your current file size limit."
+    },
+
+    {
+        "query": " I want a refund for the event. It was boring and a complete waste of time!",
+        "relevant_doc_snippets": ["Unfortunately, per our refund policy, we cannot issue refunds based on subjective dissatisfaction alone. Our terms, which were accepted at the time of purchase, clearly state that refunds are only granted in cases of cancellation or technical errors. ..."],
+        "reference_answer": "I am sorry but we only grant refunds in case of cancellation or technical errors."
+    }
+    
+  ]

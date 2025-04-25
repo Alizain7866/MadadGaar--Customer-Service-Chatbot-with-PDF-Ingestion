@@ -32,6 +32,8 @@ from langchain_community.embeddings import OllamaEmbeddings
 from langchain_community.vectorstores import FAISS
 import logging
 import time
+import os
+from content_moderation import is_safe
 
 # Configure logging
 logging.basicConfig(
@@ -41,7 +43,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-def ingest_pdf(pdf_path):
+def ingest_pdf(pdf_path, index_path="vectors/faiss_index"):
     logger.info(f"Starting PDF ingestion for {pdf_path}")
     start_time = time.time()
 
@@ -57,21 +59,35 @@ def ingest_pdf(pdf_path):
     chunks = text_splitter.split_documents(documents)
     logger.info(f"Text split into {len(chunks)} chunks")
 
+    logger.info("Filtering out unsafe content")
+    safe_chunks = [chunk for chunk in chunks if is_safe(chunk.page_content)]
+    logger.info(f"{len(safe_chunks)} safe chunks remaining after filtering")
+
     # Create embeddings with Ollama
     logger.info("Initializing Ollama embeddings")
     embeddings = OllamaEmbeddings(model="nomic-embed-text")  #
-    logger.info("Creating embeddings for document chunks")
-    embed_start = time.time()
-    vector_store = FAISS.from_documents(chunks, embeddings)
-    logger.info(f"Embeddings created in {time.time() - embed_start:.2f} seconds")
 
-    # Save FAISS index
-    logger.info("Saving FAISS index to vectors/faiss_index")
-    vector_store.save_local("vectors/faiss_index")
+    if os.path.exists(index_path):
+        logger.info("Loading existing FAISS index to append new data")
+        existing_store = FAISS.load_local(index_path, embeddings, allow_dangerous_deserialization=True)
+        new_store = FAISS.from_documents(chunks, embeddings)
+        existing_store.merge_from(new_store)
+        existing_store.save_local(index_path)
+        logger.info("New data appended to existing index")
+    else:
+        logger.info("No existing index found. Creating a new one.")
+        new_store = FAISS.from_documents(chunks, embeddings)
+        new_store.save_local(index_path)
     total_time = time.time() - start_time
     logger.info(f"PDF ingestion and vectorization completed in {total_time:.2f} seconds")
+
+# if __name__ == "__main__":
+#     import sys
+#     if len(sys.argv) > 1:
+#         ingest_pdf(sys.argv[1])
 
 if __name__ == "__main__":
     import sys
     if len(sys.argv) > 1:
-        ingest_pdf(sys.argv[1])
+        for pdf_path in sys.argv[1:]:
+            ingest_pdf(pdf_path)

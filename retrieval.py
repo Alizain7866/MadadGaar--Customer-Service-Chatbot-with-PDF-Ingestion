@@ -51,6 +51,8 @@ from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
 import logging
 import time
+from content_moderation import is_safe  # Import the guardrail
+
 
 # Configure logging
 logging.basicConfig(
@@ -63,6 +65,10 @@ logger = logging.getLogger(__name__)
 def get_response(query):
     logger.info(f"Processing query: '{query}'")
     start_time = time.time()
+
+    if not is_safe(query):
+        logger.warning("Unsafe content detected in query. Aborting response generation.")
+        return "Your query appears to contain harmful content and cannot be processed."
 
     # Load FAISS index and embeddings
     logger.info("Loading Ollama embeddings")
@@ -108,6 +114,11 @@ def get_response(query):
     total_time = time.time() - start_time
     logger.info(f"Query processing completed in {total_time:.2f} seconds")
     return response
+
+def get_retriever():
+    embeddings = OllamaEmbeddings(model="nomic-embed-text:latest")
+    vector_store = FAISS.load_local("vectors/faiss_index", embeddings, allow_dangerous_deserialization=True)
+    return vector_store.as_retriever(search_kwargs={"k": 3})
 
 if __name__ == "__main__":
     import sys
