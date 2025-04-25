@@ -13,6 +13,9 @@ An AI-powered chatbot leveraging PDF ingestion and Retrieval-Augmented Generatio
    - Models needed are nomic-embed-text and Mistral.
 5. **PDFS**:
    - We have curated our own pdfs to test the performance of the Chatbot.
+6. Evalutions:
+   - You can find the code for evaluations in `evalutions.py`.
+
 
 ## Usage
 - Upload a PDF via the Streamlit interface.
