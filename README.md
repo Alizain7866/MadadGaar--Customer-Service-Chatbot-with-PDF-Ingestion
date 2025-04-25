@@ -27,3 +27,4 @@ An AI-powered chatbot leveraging PDF ingestion and Retrieval-Augmented Generatio
 ## Directory Structure
 - `data/`: Stores uploaded PDFs.
 - `vectors/`: Stores FAISS vector index.
+- `dataset`: Contains the files that are pre-ingested that have been used to test teh chatbot RAG process.
