@@ -2,11 +2,6 @@
 
 An AI-powered chatbot leveraging PDF ingestion and Retrieval-Augmented Generation (RAG) for customer service automation.
 
-## Setup Instructions
-1. **Install Docker** (if using Dockerized environment):
-   - Build the Docker image: `docker build -t chatbot .`
-   - Run the container: `docker run -p 8501:8501 -v $(pwd)/data:/app/data -v $(pwd)/vectors:/app/vectors chatbot`
-
 2. **Install Dependencies** (if running locally):
    - `pip install -r requirements.txt`
 
@@ -15,11 +10,16 @@ An AI-powered chatbot leveraging PDF ingestion and Retrieval-Augmented Generatio
 
 4. **Ollama Setup**:
    - Ensure Ollama is installed and running locally or on a server. Update the model names in `ingestion.py` and `retrieval.py` as needed.
+   - Models needed are nomic-embed-text and Mistral.
+5. **PDFS**:
+   - We have curated our own pdfs to test the performance of the Chatbot.
 
 ## Usage
 - Upload a PDF via the Streamlit interface.
 - Ask questions based on the PDF content.
 - View responses and chat history.
+- Ask questions generally related to customer service.
+  
 
 ## Directory Structure
 - `data/`: Stores uploaded PDFs.
