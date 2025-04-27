@@ -59,9 +59,9 @@ def ingest_pdf(pdf_path, index_path="vectors/faiss_index"):
     chunks = text_splitter.split_documents(documents)
     logger.info(f"Text split into {len(chunks)} chunks")
 
-    # logger.info("Filtering out unsafe content")
-    # safe_chunks = [chunk for chunk in chunks if is_safe(chunk.page_content)]
-    # logger.info(f"{len(safe_chunks)} safe chunks remaining after filtering")
+    logger.info("Filtering out unsafe content")
+    safe_chunks = [chunk for chunk in chunks if is_safe(chunk.page_content)]
+    logger.info(f"{len(safe_chunks)} safe chunks remaining after filtering")
 
     # Create embeddings with Ollama
     logger.info("Initializing Ollama embeddings")
